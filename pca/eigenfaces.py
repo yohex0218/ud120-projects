@@ -54,10 +54,9 @@ target_names = lfw_people.target_names
 n_classes = target_names.shape[0]
 
 print "Total dataset size:"
-print "n_samples: %d" % n_samples
+print "n_samples: %d" % n_samples, h, w
 print "n_features: %d" % n_features
 print "n_classes: %d" % n_classes
-
 
 ###############################################################################
 # Split into a training and testing set
@@ -72,6 +71,8 @@ print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.
 t0 = time()
 pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
 print "done in %0.3fs" % (time() - t0)
+
+print "explained variance ratio : ", len(pca.explained_variance_ratio_), pca.explained_variance_ratio_[0]
 
 eigenfaces = pca.components_.reshape((n_components, h, w))
 
